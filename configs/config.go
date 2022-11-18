@@ -23,6 +23,7 @@ type App struct {
 type MongoDb struct {
 	Host     string
 	Port     string
+	Username string
 	Password string
 }
 

@@ -28,6 +28,7 @@ func main() {
 		Database: configs.MongoDb{
 			Host:     os.Getenv("MONGODB_HOST"),
 			Port:     os.Getenv("MONGODB_PORT"),
+			Username: os.Getenv("MONGODB_USERNAME"),
 			Password: os.Getenv("MONGODB_PASSWORD"),
 		},
 		App: configs.App{
