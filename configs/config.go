@@ -21,8 +21,9 @@ type App struct {
 
 // Database
 type MongoDb struct {
-	Host string
-	Port string
+	Host     string
+	Port     string
+	Password string
 }
 
 func NewFiberConfig(cfg App) fiber.Config {
