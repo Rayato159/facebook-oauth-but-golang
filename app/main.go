@@ -24,7 +24,7 @@ func main() {
 	}
 
 	// Set configs
-	cfg := &configs.Configs{
+	cfg := &configs.Config{
 		Database: configs.MongoDb{
 			Host:     os.Getenv("MONGODB_HOST"),
 			Port:     os.Getenv("MONGODB_PORT"),

@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-type Configs struct {
+type Config struct {
 	Database MongoDb
 	App      App
 }
