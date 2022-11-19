@@ -27,16 +27,19 @@ func NewSever(cfg *configs.Config, db *mongo.Client) *server {
 }
 
 func (s *server) Start() {
+	// Map all routes
 	if err := s.mapHandlers(); err != nil {
 		log.Fatalln(err.Error())
 		panic(err.Error())
 	}
 
+	// Server config
 	host := s.Cfg.App.Host
 	port := s.Cfg.App.Port
 	fiberConnURL := fmt.Sprintf("%s:%s", s.Cfg.App.Host, s.Cfg.App.Port)
 	log.Printf("server has been started on %s:%s ⚡", host, port)
 
+	// Start server
 	if err := s.App.Listen(fiberConnURL); err != nil {
 		log.Fatalln(err.Error())
 		panic(err.Error())
@@ -44,13 +47,12 @@ func (s *server) Start() {
 }
 
 func (s *server) mapHandlers() error {
+	// Cors config
 	middlewares.NewCorsFiberHandler(s.App)
 
-	// Group a version
-	v1 := s.App.Group("/v1")
-	_ = v1
+	// Endpoint list
 
-	// End point not found response
+	// End point not found error response
 	s.App.Use(func(c *fiber.Ctx) error {
 		log.Println("error, endpoint is not found")
 		return c.Status(fiber.StatusNotFound).JSON(entities.ErrResponse{
