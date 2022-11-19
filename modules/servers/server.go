@@ -17,7 +17,7 @@ type server struct {
 	Db  *mongo.Client
 }
 
-func NewSever(cfg *configs.Config, db *mongo.Client) *server {
+func NewServer(cfg *configs.Config, db *mongo.Client) *server {
 	fiberConfigs := configs.NewFiberConfig(cfg.App)
 	return &server{
 		Cfg: cfg,
@@ -30,7 +30,6 @@ func (s *server) Start() {
 	// Map all routes
 	if err := s.mapHandlers(); err != nil {
 		log.Fatalln(err.Error())
-		panic(err.Error())
 	}
 
 	// Server config
@@ -42,7 +41,6 @@ func (s *server) Start() {
 	// Start server
 	if err := s.App.Listen(fiberConnURL); err != nil {
 		log.Fatalln(err.Error())
-		panic(err.Error())
 	}
 }
 

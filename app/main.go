@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/Rayato159/facebook-oauth-but-go/configs"
+	"github.com/Rayato159/facebook-oauth-but-go/modules/servers"
 	databases "github.com/Rayato159/facebook-oauth-but-go/package/databases/mongodb"
 	"github.com/joho/godotenv"
 )
@@ -45,7 +46,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	// Before the end of the main function -> Close the database connection
 	defer databases.MongoDbDisconnect(db)
+
+	// Start the server
+	s := servers.NewServer(cfg, db)
+	s.Start()
 }
