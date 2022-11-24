@@ -4,6 +4,10 @@ import (
 	"fmt"
 	"log"
 
+	_facebookHttp "github.com/Rayato159/facebook-oauth-but-go/modules/facebook/controllers"
+	_facebookRepository "github.com/Rayato159/facebook-oauth-but-go/modules/facebook/repositories"
+	_facebookUsecase "github.com/Rayato159/facebook-oauth-but-go/modules/facebook/usecases"
+
 	"github.com/Rayato159/facebook-oauth-but-go/configs"
 	"github.com/Rayato159/facebook-oauth-but-go/modules/entities"
 	"github.com/Rayato159/facebook-oauth-but-go/package/middlewares"
@@ -48,12 +52,19 @@ func (s *server) mapHandlers() error {
 	// Cors config
 	middlewares.NewCorsFiberHandler(s.App)
 
-	// Endpoint list
+	// Group a version
+	v1 := s.App.Group("/v1")
+
+	//* Facebook group
+	facebookGroup := v1.Group("/facebook")
+	facebookRepository := _facebookRepository.NewFacebookRepository(s.Db)
+	facebookUsecase := _facebookUsecase.NewFacebookUsecase(facebookRepository)
+	_facebookHttp.NewFacebookController(facebookGroup, facebookUsecase)
 
 	// End point not found error response
 	s.App.Use(func(c *fiber.Ctx) error {
 		log.Println("error, endpoint is not found")
-		return c.Status(fiber.StatusNotFound).JSON(entities.ErrResponse{
+		return c.Status(fiber.StatusNotFound).JSON(entities.Response{
 			Status:     fiber.ErrNotFound.Message,
 			StatusCode: fiber.StatusNotFound,
 			Message:    "error, endpoint is not found",
