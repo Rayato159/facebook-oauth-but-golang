@@ -25,9 +25,9 @@ func NewFacebookController(r fiber.Router, facebookUse entities.FacebookUsecase)
 }
 
 func (fc *facebookController) LoginCall(c *fiber.Ctx) error {
+	defer fmt.Printf("return:\t%v.%v\n", entities.FacebookCon, utils.GetFunctionName())
 	ctx := context.WithValue(c.Context(), entities.FacebookCon, time.Now().UnixMicro())
 	fmt.Printf("called:\t%v.%v\n", entities.FacebookCon, utils.GetFunctionName())
-	defer fmt.Printf("return:\t%v.%v\n", entities.FacebookCon, utils.GetFunctionName())
 
 	_ = ctx
 

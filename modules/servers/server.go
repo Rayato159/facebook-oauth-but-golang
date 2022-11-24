@@ -14,10 +14,10 @@ import (
 type server struct {
 	Cfg *configs.Config
 	App *fiber.App
-	Db  *mongo.Client
+	Db  *mongo.Database
 }
 
-func NewServer(cfg *configs.Config, db *mongo.Client) *server {
+func NewServer(cfg *configs.Config, db *mongo.Database) *server {
 	fiberConfigs := configs.NewFiberConfig(cfg.App)
 	return &server{
 		Cfg: cfg,

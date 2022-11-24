@@ -29,6 +29,7 @@ func main() {
 		Database: configs.MongoDb{
 			Host:     os.Getenv("MONGODB_HOST"),
 			Port:     os.Getenv("MONGODB_PORT"),
+			Database: os.Getenv("MONGODB_DATABASE"),
 			Username: os.Getenv("MONGODB_USERNAME"),
 			Password: os.Getenv("MONGODB_PASSWORD"),
 		},
@@ -50,6 +51,6 @@ func main() {
 	defer databases.MongoDbDisconnect(db)
 
 	// Start the server
-	s := servers.NewServer(cfg, db)
+	s := servers.NewServer(cfg, db.Database(cfg.Database.Database))
 	s.Start()
 }
