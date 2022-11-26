@@ -34,6 +34,7 @@ email
 for more permission lists -> <a href="https://developers.facebook.com/docs/permissions/reference" target="_blank">https://developers.facebook.com/docs/permissions/reference</a>
 
 request url
+
 ```bash
 # Note that the redirect url in this part no need to parse any query params "JUST PURE REDIRECT URL"
 GET https://www.facebook.com/v15.0/dialog/oauth?
@@ -44,6 +45,7 @@ GET https://www.facebook.com/v15.0/dialog/oauth?
 ```
 
 example of request url to get a redirect
+
 ```bash
 https://localhost:3000/v1/facebook/login
 ```
@@ -84,9 +86,9 @@ response
 
 ```json
 {
-  "id": "1234567890123456",
-  "email": "nouzen@example.com",
-  "name": "Shinei Nouzen"
+    "id": "1234567890123456",
+    "email": "nouzen@example.com",
+    "name": "Shinei Nouzen"
 }
 ```
 
@@ -102,7 +104,7 @@ response
 
 ```json
 {
-  "status": true
+    "status": true
 }
 ```
 
@@ -112,12 +114,12 @@ response
 
 ```json
 {
-  "error": {
-    "message": "The access token could not be decrypted",
-    "type": "OAuthException",
-    "code": 190,
-    "fbtrace_id": "AZRUxySOh6GeksCUrq-uRZ2"
-  }
+    "error": {
+        "message": "The access token could not be decrypted",
+        "type": "OAuthException",
+        "code": 190,
+        "fbtrace_id": "AZRUxySOh6GeksCUrq-uRZ2"
+    }
 }
 ```
 
@@ -125,11 +127,11 @@ response
 
 ```json
 {
-  "error": {
-    "message": "An active access token must be used to query information about the current user.",
-    "type": "OAuthException",
-    "code": 2500,
-    "fbtrace_id": "AlBO3fDa-A_v3FoK8Sby9Ed"
-  }
+    "error": {
+        "message": "An active access token must be used to query information about the current user.",
+        "type": "OAuthException",
+        "code": 2500,
+        "fbtrace_id": "AlBO3fDa-A_v3FoK8Sby9Ed"
+    }
 }
 ```
