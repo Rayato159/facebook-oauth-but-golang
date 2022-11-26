@@ -1,7 +1,5 @@
 package entities
 
-import "context"
-
 type FacebookContext string
 
 const (
@@ -11,10 +9,5 @@ const (
 	FacebookExt FacebookContext = "FacebookContext"
 )
 
-type FacebookUsecase interface {
-	InsertOneUsers(ctx context.Context, req *UsersRegisterReq) (*UsersCredential, error)
-}
-type FacebookRepository interface {
-	InsertOneUsers(ctx context.Context, req *UsersRegisterReq) (*UsersCredential, error)
-}
+type FacebookUsecase interface{}
 type FacebookApi interface{}
