@@ -1,4 +1,53 @@
-<h1>Facebook API</h1>
+<h1>🐳 MongoDb Docker Run Container</h1>
+
+pull mongo image
+```bash
+docker pull mongo
+```
+start container
+```bash
+docker run -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=123456 -p 27017:27017 --name oauth-db-dev -d mongo:tag
+```
+configuration (before into the container)
+```bash
+docker exec -it oauth-db-dev bash
+```
+configuration (on the container)
+```bash
+mongosh mongodb://root:123456@127.0.0.1:27017
+```
+```bash
+use oauth
+```
+```bash
+show dbs
+```
+
+output
+```bash
+admin   100.00 KiB
+config  108.00 KiB
+local    72.00 KiB
+oauth    80.00 KiB
+```
+
+<h1>🍃 MongoDb Migration</h1>
+
+```bash
+cd ./package/database/mongodb/albums-migrations
+```
+
+install dependencies
+```bash
+npm install
+```
+
+up or down
+```bash
+migrate-mongo [up|down]
+```
+
+<h1>📱 Facebook API</h1>
 
 <h2>References</h2>
 <ul>
