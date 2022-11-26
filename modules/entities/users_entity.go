@@ -13,6 +13,7 @@ type UsersUsecase interface{}
 
 type UsersCredential struct {
 	UserId      string `bson:"user_id" json:"user_id"`
+	Email       string `bson:"email" json:"email"`
 	Name        string `bson:"name" json:"name"`
 	AccessToken string `bson:"access_token" json:"access_token"`
 }

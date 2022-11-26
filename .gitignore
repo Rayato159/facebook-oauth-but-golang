@@ -34,3 +34,6 @@ vendor
 *.env*
 .air*
 /tmp
+
+/package/databases/mongodb/albums-migrations/node_modules
+package-lock.json
