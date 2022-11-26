@@ -6,7 +6,12 @@ docker pull mongo
 ```
 start container
 ```bash
-docker run -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=123456 -p 27017:27017 --name oauth-db-dev -d mongo:tag
+docker run 
+    -e MONGO_INITDB_ROOT_USERNAME=root 
+    -e MONGO_INITDB_ROOT_PASSWORD=123456 
+    -p 27017:27017 
+    --name oauth-db-dev 
+    -d mongo:latest
 ```
 configuration (before into the container)
 ```bash
