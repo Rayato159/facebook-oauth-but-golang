@@ -17,7 +17,9 @@ https://graph.facebook.com/v15.0
 <ul>
     <li><a href="#redirect_url">Redirect Url</a></li>
     <li><a href="#get_access_token">Get Access Token</a></li>
+    <li><a href="#get_profile">Get Profile</a></li>
     <li><a href="#revoke_token">Revoke Token (Logout)</a></li>
+    <li><a href="#error_response">Error Response</a></li>
 </ul>
 
 <h2 id="redirect_url">Redirect Url</h2>
@@ -68,6 +70,26 @@ response
 }
 ```
 
+<h2 id="get_profile">Get Profile</h2>
+
+request url
+
+```bash
+GET https://graph.facebook.com/v15.0/me?
+   fields=id,email,name
+   &access_token={access_token}
+```
+
+response
+
+```json
+{
+  "id": "1234567890123456",
+  "email": "nouzen@example.com",
+  "name": "Shinei Nouzen"
+}
+```
+
 <h2 id="revoke_token">Revoke Token</h2>
 
 request url
@@ -81,5 +103,33 @@ response
 ```json
 {
   "status": true
+}
+```
+
+<h2 id="error_response">Error Response</h2>
+
+**code 190** -> invalid token
+
+```json
+{
+  "error": {
+    "message": "The access token could not be decrypted",
+    "type": "OAuthException",
+    "code": 190,
+    "fbtrace_id": "AZRUxySOh6GeksCUrq-uRZ2"
+  }
+}
+```
+
+**code 190** -> empty token
+
+```json
+{
+  "error": {
+    "message": "An active access token must be used to query information about the current user.",
+    "type": "OAuthException",
+    "code": 2500,
+    "fbtrace_id": "AlBO3fDa-A_v3FoK8Sby9Ed"
+  }
 }
 ```
